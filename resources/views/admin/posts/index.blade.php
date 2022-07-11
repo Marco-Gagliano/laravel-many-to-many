@@ -17,6 +17,7 @@
                 <th scope="col">ID</th>
                 <th scope="col">Titolo</th>
                 <th scope="col">Categoria</th>
+                <th scope="col">Tags</th>
                 <th scope="col">Azioni</th>
               </tr>
             </thead>
@@ -28,6 +29,13 @@
                         <th scope="row">{{$post->id}}</th>
                         <td>{{$post->title}}</td>
                         <td>{{$post->category ? $post->category->name : '-'}}</td>
+                        <td>
+                            @forelse ($post->tags as $tag)
+                                {{ $tag->name }}
+                            @empty
+                                <p>-</p>
+                            @endforelse
+                        </td>
                         <td>
                             <a class="btn btn-primary" href="{{route('admin.posts.show', $post)}}">MOSTRA</a>
                             <a class="btn btn-warning" href="{{route('admin.posts.edit', $post)}}">MODIFICA</a>
@@ -53,6 +61,26 @@
                 @foreach ($categories as $category)
                     <div class="list col-4">
                         <h4><strong>{{$category->name}}</strong></h4>
+                        <ul>
+                            @forelse ($category->posts as $post)
+                                <li>
+                                    <a href="{{route('admin.posts.show', $post)}}">{{$post->title}}</a>
+                                </li>
+                            @empty
+                                <p>Non sono presenti post per questa categoria</p>
+                            @endforelse
+                        </ul>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+
+        {{-- <div class="tag-list">
+            <h2 class="mb-5">Elenco lista post per tag:</h2>
+            <div class="row">
+                @foreach ($categories as $category)
+                    <div class="list col-4">
+                        <h4><strong>{{$category->name}}</strong></h4>
 
                             <ul>
 
@@ -67,7 +95,7 @@
                     </div>
                 @endforeach
             </div>
-        </div>
+        </div> --}}
 
     </div>
 @endsection
