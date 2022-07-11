@@ -1,0 +1,47 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrap
+@import '~bootstrap/scss/bootstrap';
+
+
+// CSS
+
+.navbar {
+    background-color: #000000;
+
+    a {
+        color: #F90;
+    }
+}
+
+
+ul {
+    list-style: none;
+
+    a {
+        color: #F90;
+    }
+}
+
+.pagination {
+    border: 1px solid #ffffff;
+}
+
+.page-item.active .page-link{
+    background-color: #F90;
+    color: #000000;
+}
+
+.page-item a{
+    background-color: #000000;
+    color: #F90;
+}
+
+.page-item.disabled .page-link{
+    background-color: #000000;
+    color: #FFFFFF;
+}
