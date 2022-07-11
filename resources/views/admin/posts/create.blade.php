@@ -61,6 +61,20 @@
                 </select>
             </div>
 
+            <div class="select-tag mb-3">
+                @foreach ($tags as $tag)
+                    <input  type="checkbox"
+                            value="{{ $tag->id }}"
+                            name="tags[]"
+                            id="tag{{ $loop->iteration }}"
+                            @if(in_array($tag->id, old('tags', []))) checked @endif>
+
+                    <label for="tag{{$loop->iteration}}">
+                        {{ $tag->name }}
+                    </label>
+                @endforeach
+            </div>
+
             <button type="submit" class="btn btn-success fw-bold">Invia</button>
 
         </form>
