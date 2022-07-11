@@ -16,6 +16,12 @@ class Post extends Model
     }
 
 
+    // creo la relazione many to many con i tags per ottenere $post->tags
+    public function tags(){
+        return $this->belongsToMany('App\Tag');
+    }
+
+
     protected $fillable = [
         'title',
         'slug',
