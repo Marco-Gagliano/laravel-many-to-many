@@ -10961,6 +10961,11 @@ a.text-dark:focus {
   color: #F90;
 }
 
+span {
+  font-size: 20px;
+  font-weight: bold;
+}
+
 ul {
   list-style: none;
 }
