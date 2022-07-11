@@ -21,7 +21,8 @@ class PostsController extends Controller
     {
         $posts = Post::orderBy('id')->paginate(5);
         $categories = Category::all();
-        return view ('admin.posts.index', compact('posts', 'categories'));
+        $tags = Tag::all();
+        return view ('admin.posts.index', compact('posts', 'categories', 'tags'));
     }
 
 

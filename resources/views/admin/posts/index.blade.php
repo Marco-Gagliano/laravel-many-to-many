@@ -75,16 +75,16 @@
             </div>
         </div>
 
-        {{-- <div class="tag-list">
+        <div class="tag-list">
             <h2 class="mb-5">Elenco lista post per tag:</h2>
             <div class="row">
-                @foreach ($categories as $category)
+                @foreach ($tags as $tag)
                     <div class="list col-4">
-                        <h4><strong>{{$category->name}}</strong></h4>
+                        <h4><strong>{{$tag->name}}</strong></h4>
 
                             <ul>
 
-                                @forelse ($category->posts as $post)
+                                @forelse ($tag->posts as $post)
                                     <li>
                                         <a href="{{route('admin.posts.show', $post)}}">{{$post->title}}</a>
                                     </li>
@@ -95,7 +95,7 @@
                     </div>
                 @endforeach
             </div>
-        </div> --}}
+        </div>
 
     </div>
 @endsection
