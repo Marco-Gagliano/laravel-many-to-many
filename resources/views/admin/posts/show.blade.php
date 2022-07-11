@@ -9,24 +9,28 @@
             <h3>Categoria: {{$post->category->name}}</h3>
         @endif
 
+        <div class="show-tags">
 
-        @if ($post->tags)
+            @if ($post->tags)
 
             <span>Tags: </span>
             @forelse ($post->tags as $tag)
-                {{ $tag->name }}
+            {{ $tag->name }}
             @empty
             <p>-</p>
             @endforelse
 
-        @endif
-
-        <div class="d-inline-block">
-            <span>Descrizione Post: </span>{{$post->description}}
+            @endif
 
         </div>
 
-        <a class="btn btn-primary" href="{{route('admin.posts.index')}}">Torna all'elenco</a>
+        <div class="show-post">
+            <span>Descrizione Post: </span>{{$post->description}}
+        </div>
+
+        <div>
+            <a class="btn btn-primary" href="{{route('admin.posts.index')}}">Torna all'elenco</a>
+        </div>
 
     </div>
 

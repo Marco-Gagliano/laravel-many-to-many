@@ -87,9 +87,10 @@ class PostsController extends Controller
      */
     public function edit($id)
     {
-        $categories = Category::all();
         $post = Post::find($id);
-        return view('admin.posts.edit', compact ('post', 'categories'));
+        $categories = Category::all();
+        $tags = Tag::all();
+        return view('admin.posts.edit', compact ('post', 'categories', 'tags'));
     }
 
 
@@ -104,9 +105,23 @@ class PostsController extends Controller
     public function update(PostRequest $request, Post $post)
     {
         $data = $request->all();
-        $data['slug'] = Post::generateSlug(($data['title']));
+
+        // inserendo un "if" nello slug, facciamo in modo che se facciamo un aggiornamento a un post, cambia anche lo slug e se mettiamo lo stesso titolo tra due post, non vanno in conflitto
+        if($data['title'] != $post->title){
+            $data['slug'] = Post::generateSlug(($data['title']));
+        }
 
         $post->update($data);
+
+        // se esiste l’array "tags" lo uso per sincronizzare i dati della tabella ponte
+        if(array_key_exists('tags', $data)){
+            $post->tags()->sync($data['tags']);
+        // se non esiste vuol dire che devo cancellare tutte le relazioni eventualmente presenti
+        }else{
+            // con "detach" non gli passo nessuna informazione
+            $post->tags()->detach();
+        }
+
 
         return redirect()->route('admin.posts.show', $post);
     }
